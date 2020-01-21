@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # get 'shows', to: 'shows#index', as: 'shows'
   get 'users/new', to: 'users#new', as: 'new_user'
   post 'users', to: 'users#create'
-  # get 'users/:id', to: 'users#show', as: 'user_dashboard'
+  get 'users/:id', to: 'users#show', as: 'user_dashboard'
   # post 'users/:id/favorites/create', as: 'new_favorite'
   # get 'users/:id/favorites/plan', to: 'favorites#plan', as: 'user_plan' #indicate which months you want to watch each show
   # post 'users/:id/favorites', to: 'favorites', as: 'create_plan'
