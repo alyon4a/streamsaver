@@ -1,2 +1,14 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div style="background-color:black;color:white;font-family:courier;">
+<h1>Welcome, <%= @user.first_name %></h1>
+
+<% @user.shows_by_provider.each do |provider, shows|%>
+    <h2 style="background-color:teal;"> <%= provider %> </h2>
+    <ul>
+    <% shows.each do |show| %>
+        <li style="display:inline;"> <%=show.name %>
+        <img src=<%=show.image_url%> width="300" height="200"></li>
+    <% end %>
+    </ul>
+    <br><br>
+<% end %>
+</div>

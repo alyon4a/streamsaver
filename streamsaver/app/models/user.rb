@@ -9,4 +9,15 @@ class User < ApplicationRecord
     validates :phone_number, presence: true, format: { with: /\A\d{3}-\d{3}-\d{4}\z/, 
         message: "hone numbers must be in xxx-xxx-xxxx format."}
 
+
+    def shows_by_provider
+        self.favorites.inject({}) do |providers_shows, favorite|
+            provider = favorite.show.provider
+            providers_shows[provider.name] = [] if providers_shows[provider.name] == nil
+            providers_shows[provider.name] << favorite.show
+            providers_shows
+        end
+
+    end
+
 end
