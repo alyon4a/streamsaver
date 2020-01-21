@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
-  get 'providers/new', to: 'providers#new', as: 'providers'
-  get 'providers/create'
-  get 'favorites/create'
-  get 'favorites/index'
-  get 'shows/new'
-  get 'shows/create'
-  get 'shows/index'
-  get 'users/new'
-  get 'users/create'
-  get 'users/show'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get 'providers/new', to: 'providers#new', as: 'new_provider'
+  # post 'providers', to: 'providers#create', as: 'providers'
+  # get 'shows/new', to: 'shows#new', as: 'new_show'
+  # get 'shows/create', to: 'shows#create', as: 'create_show'
+  # get 'shows', to: 'shows#index', as: 'shows'
+  get 'users/new', to: 'users#new', as: 'new_user'
+  post 'users', to: 'users#create'
+  # get 'users/:id', to: 'users#show', as: 'user_dashboard'
+  # post 'users/:id/favorites/create', as: 'new_favorite'
+  # get 'users/:id/favorites/plan', to: 'favorites#plan', as: 'user_plan' #indicate which months you want to watch each show
+  # post 'users/:id/favorites', to: 'favorites', as: 'create_plan'
+  
+
 end
