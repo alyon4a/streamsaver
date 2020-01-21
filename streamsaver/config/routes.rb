@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   # get 'shows/new', to: 'shows#new', as: 'new_show'
   # get 'shows/create', to: 'shows#create', as: 'create_show'
   # get 'shows', to: 'shows#index', as: 'shows'
+  get '/welcome', to: 'users#login', as: "welcome"
   get 'users/new', to: 'users#new', as: 'new_user'
   post 'users', to: 'users#create'
   get 'users/:id', to: 'users#show', as: 'user_dashboard'
