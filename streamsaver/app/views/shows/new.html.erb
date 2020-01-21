@@ -1,2 +1,16 @@
-<h1>Shows#new</h1>
-<p>Find me in app/views/shows/new.html.erb</p>
+<h1>New Show</h1>
+
+<%= form_for(@show) do |f| %>
+ <%= f.label :name %>
+ <%= f.text_field :name %>
+ <br>
+ <%= f.label :description %>
+ <%= f.text_field :description %>
+ <br>
+ <%= f.label "Image URL" %>
+ <%= f.text_field :image_url %>
+ <br>
+ <%= f.collection_select :provider_id, @providers, :id, :name %>
+
+ <%= f.submit %>
+<% end %>
