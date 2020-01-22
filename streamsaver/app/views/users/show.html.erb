@@ -1,11 +1,4 @@
-<h3>Main Menu</h3>
-<ul>
-<%=link_to "Add to Your Favorites", plan_path%>
-<%=link_to "Add New Show", new_show_path%>
-<%=form_tag logout_path do  %>
-<%=submit_tag "Log Out"%>
-<%end%>
-</ul>
+
 
 <h3>Pick a mock date</h3>
 <%= form_tag(set_date_path) do %>
