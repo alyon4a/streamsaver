@@ -13,8 +13,7 @@ class User < ApplicationRecord
 
 
     def shows_by_provider
-        Show.shows_by_provider(Favorite.shows(self.favorites))
-        
+        Show.shows_by_provider(self.shows)
     end
 
 end
