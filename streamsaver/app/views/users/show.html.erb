@@ -2,7 +2,9 @@
 <ul>
 <%=link_to "Add to Your Favorites", plan_path%>
 <%=link_to "Add New Show", new_show_path%>
-<%=link_to "Log Out", logout_path%>
+<%=form_tag logout_path do  %>
+<%=submit_tag "Log Out"%>
+<%end%>
 </ul>
 
 <div style="background-color:black;color:white;font-family:courier;">
