@@ -1,3 +1,10 @@
+<h3>Main Menu</h3>
+<ul>
+<%=link_to "Add to Your Favorites", user_plan_path%>
+<%=link_to "Add New Show", new_show_path%>
+<%=link_to "Log Out", logout_path%>
+</ul>
+
 <div style="background-color:black;color:white;font-family:courier;">
 <h1>Welcome, <%= @user.first_name %></h1>
 
