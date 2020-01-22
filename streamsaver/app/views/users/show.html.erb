@@ -7,42 +7,37 @@
 <%end%>
 </ul>
 
+<h3>Pick a mock date</h3>
+<%= form_tag(set_date_path) do %>
+    <%= date_select(:date, :date) %>
+    <%= submit_tag %>
+<% end %>
+
 <div style="background-color:black;color:white;font-family:courier;">
-<h1>Welcome, <%= @user.first_name %></h1>
+    <h1>Welcome, <%= @user.first_name %></h1>
+    <div>
+        <h3>Current Shows (<%=@current_month%>)</h3>
+        <ul>
+            <%@shows_this_month.each do |show|%>
+                <li style="display:inline;"> 
+                    <%=show.name%>
+                    <img src=<%=show.image_url%> width="300" height="200">
+                    <%=show.provider.name%>
+                </li>
+            <%end%>
+        </ul>
+    </div>
 <div>
-<h3>Current Shows (<%=@current_month%>)</h3>
-<ul>
-<%@shows_this_month.each do |show|%>
-<li style="display:inline;"> 
-<%=show.name%>
-<img src=<%=show.image_url%> width="300" height="200">
-<%=show.provider.name%>
-</li>
-<%end%>
-</ul>
-</div>
-<div>
-<h3>Future Shows</h3>
-<ul>
-<%@upcoming_shows.each do |show|%>
-<li style="display:inline;"> 
-<%=show.name%>
-<img src=<%=show.image_url%> width="300" height="200">
-<%=show.provider.name%>
-</li>
-<%end%>
-</ul>
+    <h3>Future Shows</h3>
+    <ul>
+        <%@upcoming_shows.each do |show|%>
+            <li style="display:inline;"> 
+                <%=show.name%>
+                <img src=<%=show.image_url%> width="300" height="200">
+                <%=show.provider.name%>
+            </li>
+        <%end%>
+    </ul>
 </div>
 
-<% @user.shows_by_provider.each do |provider, shows|%>
-    <h2 style="background-color:teal;"> <%= provider %> </h2>
-    <ul>
-    <% shows.each do |show| %>
-        <li style="display:inline;"> <%=show.name %>
-        <img src=<%=show.image_url%> width="300" height="200">
-        </li>
-    <% end %>
-    </ul>
-    <br><br>
-<% end %>
 </div>

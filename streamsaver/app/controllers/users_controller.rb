@@ -29,6 +29,15 @@ class UsersController < ApplicationController
     @current_month = "Jan" #Change based on month selector
     @shows_this_month = @user.display_shows(@current_month, true)
     @upcoming_shows = @user.display_shows(@current_month, false)
+
+    #tbd select current date
+  end
+
+  def set_date
+    puts "DATE!!!!"
+    puts params[:date]
+    #tbd add date to session
+    redirect_to user_dashboard_path
   end
 
   private 

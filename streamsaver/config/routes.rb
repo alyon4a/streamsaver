@@ -21,8 +21,9 @@ Rails.application.routes.draw do
   post "/login", to: 'sessions#create'
   post "/logout", to: 'sessions#destroy', as: 'logout'
 
-  # TBD
-  #get '/favorites', to: "favorites#index", as: "favorites"
+  # Testing date
+  
+  post '/set_date', to: "users#set_date", as: "set_date"
 
 
 

@@ -32,10 +32,7 @@ class FavoritesController < ApplicationController
   end
 
   def create_plan
-    puts 
     Favorite.parse_months(params[:fav_months])
-    # parse fav_months and add them to months for each favorite
-
     redirect_to user_dashboard_path
   end
 
