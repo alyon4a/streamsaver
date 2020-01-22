@@ -1,6 +1,6 @@
 class FavoritesController < ApplicationController
 
-  before_action :logged_in?
+  #before_action :logged_in?
 
   def new 
     @user = current_user

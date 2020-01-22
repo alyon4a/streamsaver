@@ -42,6 +42,45 @@ class User < ApplicationRecord
         end 
     end 
 
+    def get_reminders(month, day)
+       expiring_shows = expiring_shows(month, day)
+       show_names = expiring_shows.map {|show| show.name}
+       provider_names = expiring_providers(expiring_shows)
+       reminder = []
+       days_left = Time.days_in_month(month) - day
+       if show_names != [] && day > 15
+            shows = show_names.join(", ")
+            reminder << "#{shows} will expire soon. You have #{days_left} days left to watch!"
+       else 
+            reminder << "Welcome, #{self.first_name}!"
+       end 
+       if provider_names != []
+            providers = provider_names.join(", ")
+            reminder << "You don't need #{providers} next month. Remember to deactivate your subscription in #{days_left} days."
+       end
+       reminder
+    end 
 
+    #Helper method to return a hash of of expiring shows (the key is the show and the value is its array of months)
+    def expiring_shows(month, day)
+        show_hash = self.shows_by_month.select do |tv_show, month_array|
+            Favorite.month_to_number(month_array.last) == month 
+        end
+        show_hash.keys
+    end 
+
+    #Helper method to get expiring providers by crossreferencing the hash of shows organized by providers against the list of shows expiring this month
+    def expiring_providers(expiring_shows)
+        providers = []
+        shows_by_provider.each do |provider, show_array|
+            shows_in_common = show_array.select do |show|
+                expiring_shows.include?(show)
+            end
+            if !shows_in_common.empty?
+                providers << provider 
+            end 
+        end 
+        providers
+    end 
 
 end

@@ -33,9 +33,9 @@ class UsersController < ApplicationController
     @current_month = session[:month] ? session[:month] : Favorite.number_to_month(Time.now.month)
     @current_day = session[:day] ? session[:day] : Time.now.day
     @current_month_number = session[:month_number] ? session[:month_number] : Time.now.month
-
     @shows_this_month = @user.display_shows(@current_month, true)
     @upcoming_shows = @user.display_shows(@current_month, false)
+    @reminders = @user.get_reminders(@current_month_number, @current_day)
   end
 
   def set_date
