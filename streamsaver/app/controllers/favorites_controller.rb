@@ -24,7 +24,6 @@ class FavoritesController < ApplicationController
   end
 
   def index
-  
     if current_user
       @favorites = current_user.favorites
     else 
@@ -33,10 +32,11 @@ class FavoritesController < ApplicationController
   end
 
   def create_plan
-    puts params
+    puts 
+    Favorite.parse_months(params[:fav_months])
     # parse fav_months and add them to months for each favorite
 
-    redirect_to user_dashboard_path(current_user)
+    redirect_to user_dashboard_path
   end
 
 end

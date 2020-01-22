@@ -8,11 +8,11 @@
     <% end %>
   </tr>
 
-  <% @favorites.each_with_index do |favorite, fav_index| %>
+  <% @favorites.each do |favorite| %>
         <tr> 
           <td><%= favorite.show.name %> </td>
           <% @all_months.each_with_index do |month, month_index| %>
-            <td> <%= check_box_tag "fav_months[#{fav_index}_#{month_index}]" %> </td>
+            <td> <%= check_box_tag "fav_months[#{favorite.id}_#{month_index}]" %> </td>
           <% end %>
           <!-- loop of checkboxes corresponding to months in td -->  
         </tr>

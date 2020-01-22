@@ -13,13 +13,8 @@ class User < ApplicationRecord
 
 
     def shows_by_provider
-        self.favorites.inject({}) do |providers_shows, favorite|
-            provider = favorite.show.provider
-            providers_shows[provider.name] = [] if providers_shows[provider.name] == nil
-            providers_shows[provider.name] << favorite.show
-            providers_shows
-        end
-
+        Show.shows_by_provider(Favorite.shows(self.favorites))
+        
     end
 
 end

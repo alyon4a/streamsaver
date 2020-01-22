@@ -15,7 +15,7 @@ class ShowsController < ApplicationController
   end
 
   def index
-    
+      @shows_by_provider = Show.all_shows_by_provider
   end
 
   private 
