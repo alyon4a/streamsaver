@@ -38,14 +38,22 @@ got = Show.create(name: "Game of Thrones",
                          description: "Summers span decades. Winters can last a lifetime. And the struggle for the Iron Throne begins. Based on the bestselling book series by George R.R. Martin and created by David Benioff and D.B. Weiss.",
                          image_url: "https://www.hbo.com/content/dam/hbodata/series/game-of-thrones/episodes/1/game-of-thrones-1-1920x1080.jpg/_jcr_content/renditions/cq5dam.web.1200.675.jpeg",
                          provider: hbo)
+
+fleabag = Show.create(name: "Fleabag",
+                        description: "Cool British show about a single girl, won a bunch of Golden Globes",
+                        image_url: "https://cdn2.hercampus.com/styles/hcxo_tile_standard/s3/hero-images/2019/10/13/fleabag.jpg?timestamp=1570982998",
+                        provider: amazon_prime)
+
+
                          
-Favorite.create(user: alona, show: rick_and_morty, months: "Jan 2020, Feb 2020")    
-Favorite.create(user: alona, show: friends, months: "Jan 2020, Feb 2020")  
-Favorite.create(user: alona, show: mrs_maisel, months: "Mar 2020, Apr 2020")                   
+                         
+Favorite.create(user: alona, show: rick_and_morty, months: "Jan,Feb")    
+Favorite.create(user: alona, show: friends, months: "Jan,Feb")  
+Favorite.create(user: alona, show: mrs_maisel, months: "Mar,Apr")                   
                                     
-Favorite.create(user: anna, show: rick_and_morty, months: "Jan 2020, Feb 2020")    
-Favorite.create(user: anna, show: friends, months: "Jan 2020, Feb 2020")  
-Favorite.create(user: anna, show: got, months: "Mar 2020, Apr 2020")                   
+Favorite.create(user: anna, show: rick_and_morty, months: "Jan,Feb")    
+Favorite.create(user: anna, show: friends, months: "Jan,Feb")  
+Favorite.create(user: anna, show: got, months: "Mar,Apr")                   
                                     
               
 
