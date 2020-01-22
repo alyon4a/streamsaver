@@ -1,4 +1,7 @@
 class FavoritesController < ApplicationController
+
+  before_action :logged_in?
+
   def create
     user = User.first
     new_favorites = []
@@ -16,6 +19,12 @@ class FavoritesController < ApplicationController
   end
 
   def index
+  
+    if current_user
+      @favorites = current_user.favorites
+    else 
+      redirect_to login_path
+    end 
   end
 
   def create_plan
