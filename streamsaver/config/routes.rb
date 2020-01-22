@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   post 'shows', to: 'shows#create', as: 'create_show'
   get 'shows', to: 'shows#index', as: 'shows'
 
-  # user login-signuo
+  # user login-signup
   post '/signup', to: 'users#create'
   get '/signup', to: 'users#new', as: 'users'
 
@@ -19,8 +19,7 @@ Rails.application.routes.draw do
 
   get "/login", to: 'sessions#new', as: 'login'
   post "/login", to: 'sessions#create'
-  get '/logout', to: 'sessions#destroy', as: 'logout'
-
+  post "/logout", to: 'sessions#destroy', as: 'logout'
 
   # TBD
   #get '/favorites', to: "favorites#index", as: "favorites"
