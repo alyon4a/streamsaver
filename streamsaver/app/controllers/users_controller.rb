@@ -26,17 +26,20 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
-    @current_month = "Jan" #Change based on month selector
+    @current_month = session[:month]
+    @current_day = session[:day]
+    @current_month_number = session[:month_number]
     @shows_this_month = @user.display_shows(@current_month, true)
     @upcoming_shows = @user.display_shows(@current_month, false)
-
-    #tbd select current date
   end
 
   def set_date
-    puts "DATE!!!!"
-    puts params[:date]
-    #tbd add date to session
+    session[:day] = params[:date]["date(3i)"]
+    
+    month_number = params[:date]["date(2i)"].to_i
+    session[:month_number] = month_number
+    session[:month] = Favorite.all_months[month_number - 1]
+
     redirect_to user_dashboard_path
   end
 

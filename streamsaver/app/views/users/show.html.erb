@@ -9,7 +9,7 @@
 
 <h3>Pick a mock date</h3>
 <%= form_tag(set_date_path) do %>
-    <%= date_select(:date, :date) %>
+    <%= date_select(:date, :date, default: { day: @current_day.to_i, month: @current_month_number }) %>
     <%= submit_tag %>
 <% end %>
 
