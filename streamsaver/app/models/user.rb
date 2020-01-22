@@ -16,4 +16,32 @@ class User < ApplicationRecord
         Show.shows_by_provider(self.shows)
     end
 
+    #Helper method creates a hash of show names pointing to an array of months the user selected
+    def shows_by_month 
+        new_hash = self.favorites.reduce({}) do |shows, favorite|
+            shows[favorite.show] = favorite.months_array
+            shows
+        end
+    end
+
+
+    def display_shows(month, current)
+        current_shows = []
+        future_shows = []
+        self.shows_by_month.each do |show, month_array|
+            if month_array.include?(month)
+                current_shows << show
+            else 
+                future_shows << show
+            end  
+        end 
+        if current
+            current_shows 
+        else 
+            future_shows 
+        end 
+    end 
+
+
+
 end

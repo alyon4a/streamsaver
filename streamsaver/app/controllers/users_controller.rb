@@ -25,7 +25,10 @@ class UsersController < ApplicationController
   end 
 
   def show
-    @user = current_user 
+    @user = current_user
+    @current_month = "Jan" #Change based on month selector
+    @shows_this_month = @user.display_shows(@current_month, true)
+    @upcoming_shows = @user.display_shows(@current_month, false)
   end
 
   private 
