@@ -6,14 +6,18 @@ Rails.application.routes.draw do
   # get 'shows', to: 'shows#index', as: 'shows'
   get '/welcome', to: 'users#login', as: "welcome"
   get 'shows/new', to: 'shows#new', as: 'new_show'
-  get 'shows/create', to: 'shows#create', as: 'create_show'
+  post 'shows', to: 'shows#create', as: 'create_show'
   get 'shows', to: 'shows#index', as: 'shows'
+
   get 'users/new', to: 'users#new', as: 'new_user'
   post 'users', to: 'users#create'
   get 'users/:id', to: 'users#show', as: 'user_dashboard'
   #post 'users/:id/favorites/create', as: 'new_favorite'
-  get 'users/:id/favorites/new_plan', to: 'favorites#plan', as: 'user_plan' #indicate which months you want to watch each show
-  post 'users/:id/favorites', to: 'favorites#create', as: 'create_plan'
+  #get 'users/:id/favorites/new_plan', to: 'favorites#plan', as: 'user_plan' #indicate which months you want to watch each show
+  #post 'users/:id/favorites', to: 'favorites#create', as: 'create_plan'
+
+  post '/plan', to: 'favorites#create'
+  post '/create_plan', to: 'favorites#create_plan'
   
 
 end

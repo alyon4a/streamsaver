@@ -1,0 +1,22 @@
+<h1> Plan your watch flow </h1>
+<%= form_tag('create_plan') do %>
+<table>
+  <tr>
+    <th> Show Title </th>
+    <% @all_months.each do |month| %>
+        <th> <%= month %> </th>
+    <% end %>
+  </tr>
+
+  <% @favorites.each_with_index do |favorite, fav_index| %>
+        <tr> 
+          <td><%= favorite.show.name %> </td>
+          <% @all_months.each_with_index do |month, month_index| %>
+            <td> <%= check_box_tag "fav_months[#{fav_index}_#{month_index}]" %> </td>
+          <% end %>
+          <!-- loop of checkboxes corresponding to months in td -->  
+        </tr>
+    <% end %>
+</table>
+<%= submit_tag %>
+<% end %>

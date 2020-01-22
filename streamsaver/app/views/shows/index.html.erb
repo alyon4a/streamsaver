@@ -1,7 +1,5 @@
 
-<ul>
-<% @shows.each do |show| %>
-    <li style="display:inline;"> <%=show.name %>
-    <img src=<%=show.image_url%> width="300" height="200"></li>
+<%= form_tag('/plan') do %>
+    <%= collection_check_boxes(:user, :show_ids, @shows, :id, :name)  %>
+    <%= submit_tag %>
 <% end %>
-</ul>
