@@ -26,11 +26,11 @@ class Favorite < ApplicationRecord
         self.months.split(',')
     end
 
-    def self.shows(favorites)
-        favorites.map {|favorite| favorite.show }
+    def self.month_to_number(month)
+        self.all_months.find_index(month) + 1
+    end 
+    def self.number_to_month(number)
+        self.all_months[number - 1]
     end
 
-    # def self.months_to_string(months_array)
-    #     months_array.to_s
-    # end
 end
