@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
-  
+  get '/', to: 'users#show'
+
   # providers
-  get 'providers/new', to: 'providers#new', as: 'new_provider'
+  get '/providers/new', to: 'providers#new', as: 'new_provider'
   # post 'providers', to: 'providers#create', as: 'providers'
 
   # shows
-  get 'shows/new', to: 'shows#new', as: 'new_show'
-  post 'shows', to: 'shows#create', as: 'create_show'
-  get 'shows', to: 'shows#index', as: 'shows'
+  get '/shows/new', to: 'shows#new', as: 'new_show'
+  post '/shows', to: 'shows#create', as: 'create_show'
+  get '/shows', to: 'shows#index', as: 'shows'
 
   # user login-signup
   post '/signup', to: 'users#create'

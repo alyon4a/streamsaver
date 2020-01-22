@@ -44,6 +44,40 @@ fleabag = Show.create(name: "Fleabag",
                         image_url: "https://cdn2.hercampus.com/styles/hcxo_tile_standard/s3/hero-images/2019/10/13/fleabag.jpg?timestamp=1570982998",
                         provider: amazon_prime)
 
+atypical = Show.create(name: "Atypical",
+                        description: "Cool show about a kid on the spectrum",
+                        image_url: "https://news.otakukart.com/wp-content/uploads/2019/12/atypical-scaled.jpg",
+                        provider: netflix)
+our_planet = Show.create(name: "Our Planet",
+                        description: "Spectacular documentary about Our Planet",
+                        image_url: "https://papyrus.greenville.edu/wp-content/uploads/2019/03/Netflix-Our-Planet.jpg",
+                        provider: netflix)
+
+chefs_table = Show.create(name: "Chef's Table",
+                        description: "Spectacular documentary about Food",
+                        image_url: "https://www.thewrap.com/wp-content/uploads/2016/03/chefs-table-more-seasons.jpg",
+                        provider: netflix)
+
+chernobyl = Show.create(name: "Chernobyl",
+                        description: "Spectacular documentary about Chernobyl",
+                        image_url: "https://i.ytimg.com/vi/_tAhiwb1NYk/maxresdefault.jpg",
+                        provider: hbo)
+sesame_street = Show.create(name: "Sesame Street",
+                        description: "Your favorite show for kids",
+                        image_url: "https://images-na.ssl-images-amazon.com/images/I/91JTvIvSGdL._RI_.jpg",
+                        provider: hbo)
+
+                        
+
+
+                        
+
+
+
+
+
+
+
 
                          
                          
