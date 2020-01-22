@@ -1,4 +1,6 @@
 class ShowsController < ApplicationController
+  before_action :logged_in?
+
   def new
     @show = Show.new
     @providers = Provider.all
@@ -13,8 +15,7 @@ class ShowsController < ApplicationController
   end
 
   def index
-    @user = User.first
-    @shows = Show.all.select {|show| !@user.shows.include?(show)}
+    
   end
 
   private 

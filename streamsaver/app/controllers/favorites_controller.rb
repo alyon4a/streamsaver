@@ -2,13 +2,18 @@ class FavoritesController < ApplicationController
 
   before_action :logged_in?
 
+  def new 
+    @user = current_user
+    @shows = Show.all.select {|show| !@user.shows.include?(show)}
+  end
+  
   def create
-    user = User.first
+    
     new_favorites = []
     show_ids = params[:user][:show_ids]
     show_ids.each do |show_id|
       if show_id != ""
-        new_favorites << Favorite.create(user_id: user.id, show_id: show_id)
+        new_favorites << Favorite.create(user_id: current_user.id, show_id: show_id)
       end
     end
 
@@ -31,7 +36,7 @@ class FavoritesController < ApplicationController
     puts params
     # parse fav_months and add them to months for each favorite
 
-    redirect_to user_dashboard_path(User.first)
+    redirect_to user_dashboard_path(current_user)
   end
 
 end
