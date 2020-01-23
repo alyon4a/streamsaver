@@ -47,8 +47,8 @@ class User < ApplicationRecord
        show_names = expiring_shows.map {|show| show.name}
        provider_names = expiring_providers(expiring_shows)
        reminder = []
-       days_left = Time.days_in_month(month) - day
-       if show_names != [] && day > 15
+       days_left = Time.days_in_month(month) - day.to_i
+       if show_names != [] && day.to_i > 15
             shows = show_names.join(", ")
             reminder << "#{shows} will expire soon. You have #{days_left} days left to watch!"
        else 
