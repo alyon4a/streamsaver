@@ -2,6 +2,11 @@ class FavoritesController < ApplicationController
 
   #before_action :logged_in?
 
+  def show
+    @favorite = Favorite.find(params[:id])
+    @show = @favorite.show
+  end
+
   def new 
     user = current_user
     shows = Show.all.select {|show| !user.shows.include?(show)}
@@ -22,13 +27,10 @@ class FavoritesController < ApplicationController
     render 'plan'
   end
 
-  def index
-    # if current_user
-    #   @favorites = current_user.favorites
-    #   @shows_by_provider = Show.all_shows_by_provider
-    # else 
-    #   redirect_to login_path
-    # end 
+  def destroy
+    favorite = Favorite.destroy(params[:id])
+
+    redirect_to user_dashboard_path
   end
 
   def create_plan

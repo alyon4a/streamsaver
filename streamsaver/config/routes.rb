@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   get '/', to: 'users#show'
 
   # providers
@@ -18,17 +19,17 @@ Rails.application.routes.draw do
   
   #session routes
 
-  get "/login", to: 'sessions#new', as: 'login'
-  post "/login", to: 'sessions#create'
-  post "/logout", to: 'sessions#destroy', as: 'logout'
+  get '/login', to: 'sessions#new', as: 'login'
+  post '/login', to: 'sessions#create'
+  post '/logout', to: 'sessions#destroy', as: 'logout'
 
   # Testing date
   
-  post '/set_date', to: "users#set_date", as: "set_date"
-
-
+  post '/set_date', to: 'users#set_date', as: 'set_date'
 
   #favorite routes
+  get '/favorites/:id', to: 'favorites#show', as: 'favorite'
+  delete '/favorites/:id', to: 'favorites#destroy', as: 'favorites'
   get '/plan', to: 'favorites#new', as: 'plan'
   post '/plan', to: 'favorites#create'
   post '/create_plan', to: 'favorites#create_plan'
