@@ -1,4 +1,24 @@
+
 <%= form_tag('/plan') do %>
-    <%= collection_check_boxes(:user, :show_ids, @shows, :id, :name)  %>
-    <%= submit_tag %>
+  <% @shows_by_provider.each do |provider, shows|%>
+    <h3 class="p-1 mb-2 bg-info text-white"> <%= provider %> </h3>
+    <div class="form-row">
+          <% shows.each do |show| %>
+            <div class="col-sm-3 mb-3">
+              <div class="input-group">
+                <div class="form-check">
+                  <%= check_box_tag("show_#{show.id}", value = show.id, checked = false) %>
+                  <label class="form-check-label" for=<%=show.id%>>
+                    <%=show.name%>
+                  </label>
+                </div>
+                <img src=<%=show.image_url%> width="300" height="200">
+              </div>
+            </div>
+          <% end %>
+    </div>
+  <% end %>
+  <div class="text-center mb-2 p-5" >
+    <%= submit_tag ("Plan your stream!") %>
+  </div>
 <% end %>
