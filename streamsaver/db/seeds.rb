@@ -24,6 +24,11 @@ mrs_maisel = Show.create(name: "Marvelous Mrs. Maisel",
                          image_url: "https://images.immediate.co.uk/production/volatile/sites/3/2018/12/Rachel-Brosnahan-plays-Miriam-Maisel-093c7b3.jpg?quality=90&resize=620,413",
                          provider: amazon_prime)
 
+new_yorker = Show.create(name: "The New Yorker", 
+                         description: "New Yorker Documentary",
+                         image_url: "https://images-na.ssl-images-amazon.com/images/I/71o9MB0F11L._RI_.jpg",
+                         provider: amazon_prime)
+
 friends = Show.create(name: "Friends", 
                          description: "Three young men and three young women -- of the BFF kind -- live in the same apartment complex and face life and love in New York. They're not above sticking their noses into one another's business and swapping romantic partners, which always leads to the kind of hilarity average people will never experience -- especially during breakups.",
                          image_url: "https://image.cnbcfm.com/api/v1/image/104781650-NBC_Friends_tv_show.jpg?v=1575564001&w=678&h=381",
