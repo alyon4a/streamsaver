@@ -6,6 +6,14 @@
     <%= submit_tag %>
 <% end %>
 
+<h3>***Messages***</h3>
+<ul>
+<%@reminders.each do |reminder|%>
+<li><%=reminder%></li>
+<%end%>
+</ul>
+
+
 <div style="background-color:black;color:white;font-family:courier;">
     <h1>Welcome, <%= @user.first_name %></h1>
     <div>
