@@ -1,0 +1,9 @@
+
+    <p>Hi <%= @user.first_name %>,</p>
+    <p>We have the following messages for you:</p>
+    <ul>
+      <% @reminders.each do |reminder| %>
+      <li><%=reminder%></li>
+<%end %>
+</ul>
+<p>Thanks for joining and have a great day!</p>

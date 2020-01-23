@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :logged_in?, except: [:new]
+  before_action :logged_in?, except: [:new, :create]
   
   def new
     @user = User.new
@@ -11,14 +11,14 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.valid? 
-      @user.save
-      session[:user_id] = @user.id 
-      redirect_to user_dashboard_path(@user)
-    else 
-      flash[:errors] = @user.errors.full_messages
-      redirect_to users_path
-    end 
+      if @user.valid? 
+        @user.save
+        session[:user_id] = @user.id 
+        redirect_to user_dashboard_path(@user)
+      else 
+        flash[:errors] = @user.errors.full_messages
+        redirect_to users_path
+      end 
   end
 
   def index 
@@ -36,15 +36,22 @@ class UsersController < ApplicationController
     @shows_this_month = @user.display_shows(@current_month, true)
     @upcoming_shows = @user.display_shows(@current_month, false)
     @reminders = @user.get_reminders(@current_month_number, @current_day)
+    if @reminders.empty? 
+      @reminders <<"Welcome, #{@user.first_name}! You have no messages."
+    end 
   end
 
   def set_date
+    user = current_user
     session[:day] = params[:date]["date(3i)"]
     
     month_number = params[:date]["date(2i)"].to_i
     session[:month_number] = month_number
     session[:month] = Favorite.all_months[month_number - 1]
-
+    reminders = user.get_reminders(session[:month_number], session[:day])
+    if !reminders.empty?
+        UserMailer.notification_email(user, reminders).deliver_now
+    end 
     redirect_to user_dashboard_path
   end
 
