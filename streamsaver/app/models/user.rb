@@ -51,8 +51,6 @@ class User < ApplicationRecord
        if show_names != [] && day.to_i > 15
             shows = show_names.join(", ")
             reminder << "#{shows} will expire soon. You have #{days_left} days left to watch!"
-       else 
-            reminder << "Welcome, #{self.first_name}!"
        end 
        if provider_names != []
             providers = provider_names.join(", ")
