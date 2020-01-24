@@ -31,10 +31,6 @@ class User < ApplicationRecord
         future_favorites = []
         self.favorites.each do |favorite|
             months = favorite.months.split(",")
-            # next_months = months.map do |month|
-            #     new_index = Favorite.all_months.find_index(month) + 1
-            #     Favorite.all_months[new_index]
-            # end 
             next_month = Favorite.next_month(month)
             if months.include?(month)
                 current_favorites << favorite
@@ -61,9 +57,9 @@ class User < ApplicationRecord
        days_left = Time.days_in_month(month) - day.to_i
        if show_names != [] && day.to_i > 15
             shows = show_names.join(", ")
-            reminder << "#{shows} will expire soon. You have <strong>#{days_left} days</strong> left to watch!"
+            reminder << "<strong>#{shows}</strong> will expire soon. You have <strong>#{days_left} days</strong> left to watch!"
        end 
-       if provider_names != []
+       if provider_names != [] && day.to_i > 15
             providers = provider_names.join(", ")
             reminder << "You don't need <strong>#{providers}</strong> next month. Remember to deactivate your subscription in <strong>#{days_left} days</strong>."
        end
