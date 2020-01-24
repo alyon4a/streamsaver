@@ -1,21 +1,73 @@
-<h1>Login Page</h1>
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <title>"Stream Saver"</title>
+        <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    </head>
+ 
+  <style>
+        div.signin{
+            width: 30vw;
+            height: 37vh;
+            background-color: #D8CEBE;
+            color: black;
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%);
+        }
+        .home_video {
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            object-fit: cover;
+            top: 0;
+            z-index: -2;
+        }
 
-<%if flash[:error]%>
-<%=flash[:error]%>
-<%end%>
+        .home-video-wrapper {
+            height: 100vh;
+            display: flex;
+        }
+
+  </style>
+
+  <body>
+    <header>
+      
+    </header>
+    <div class="home-video-wrapper">
+        <%= video_tag "video.mp4", autoplay: :autoplay, loop: :loop, mute: :mute, class: "home_video" %>
+    </div>
+    <div class="signin p-3 rounded">
+        <div class="text-center p-2">Sign In</div>
+            <%if flash[:error]%>
+                <%=flash[:error]%>
+            <%end%>
+        
+        <%=form_tag login_path do %>
+        
+            <label class="col-md-3">Email:</label>
+            <%= text_field_tag :email%>
+            <br>
+            <label class="col-md-3">Password: </label>
+            <%= password_field_tag :password%>
+            
+            <div class="text-center p-2 "><%= submit_tag("Login", :id => "button", :class => "rounded", :name=>"submit") %> </div>
+        <%end%>
+
+        <br>
+        <div> Not registered? <%=link_to "Sign Up", users_path%></div>
+    </div>
 
 
+  </body>
+</html>
 
-<%=form_tag login_path do %>
-<br>
-<label>Email:</label>
-<%=text_field_tag :email%>
-<label>Password: </label>
-<%=password_field_tag :password%>
-<%=submit_tag "Login"%>
-<%end%>
 
-<br>
-<p>No existing account? <%=link_to "Sign Up", users_path%><p>
 
 
