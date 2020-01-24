@@ -1,11 +1,10 @@
-
+<h1>Add to your favorites</h1>
 <%= form_tag('/plan') do %>
   <% @shows_by_provider.each do |provider, shows|%>
     <h3 class="p-1 mb-2 bg-info text-white"> <%= provider %> </h3>
     <div class="form-row">
           <% shows.each do |show| %>
-            <div class="col-sm-3 mb-3">
-              <div class="input-group">
+            <div class="col-sm-4 mb-3">
                 <div class="form-check">
                   <%= check_box_tag("show_#{show.id}", value = show.id, checked = false) %>
                   <label class="form-check-label" for=<%=show.id%>>
@@ -13,7 +12,6 @@
                   </label>
                 </div>
                 <img src=<%=show.image_url%> width="320" height="200">
-              </div>
             </div>
           <% end %>
     </div>

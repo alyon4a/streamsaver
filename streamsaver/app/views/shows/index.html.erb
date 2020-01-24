@@ -1,15 +1,17 @@
-<div style="background-color:black;color:white;font-family:courier;">
 <h1>All shows</h1>
-
 <% @shows_by_provider.each do |provider, shows|%>
-    <h2 style="background-color:teal;"> <%= provider %> </h2>
-    <ul>
-    <% shows.each do |show| %>
-        <li style="display:inline;"> <%=show.name %>
-        <img src=<%=show.image_url%> width="300" height="200">
-        </li>
-    <% end %>
-    </ul>
-    <br><br>
+    <h3 class="p-1 mb-2 bg-info text-white"> <%= provider %> </h3>
+    <div class="tv-block">
+        <% shows.each do |show| %>
+            <div class="column">
+                
+                <img src=<%=show.image_url%> width="320" height="200">
+                <div class="tv-info">
+                    <%=show.name%>
+                </div>
+            </div>
+        <% end %>
+    </div>
 <% end %>
-</div>
+
+
