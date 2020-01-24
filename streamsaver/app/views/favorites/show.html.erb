@@ -1,9 +1,13 @@
 <div class="text-center mb-2 p-3" >
-    <h1> <%= @show.name%> </h1>
-    <h3> Streams on <%= @show.provider.name %> </h3>
+    <h1 class="text-info"> <%= @show.name%> </h1>
+    
     <div class="form-row">
-        <div class="col-md-5 mb-3"><img src=<%=@show.image_url%> width="400" height="300"></div>
-        <div class="col-md-5 mb-5 text-center"><%= @show.description %> </div>
+        <div class="col-md-7 mb-3"><img src=<%=@show.image_url%> width="450" height="300"></div>
+        <div class="col-md-5 text-left">
+            <h3 class="p-3"> Streams on <%= @show.provider.name %> </h3>
+            <p><%= @show.description %></p> 
+            <h3>Planning to watch in: <span class="bg-info"> <%= @favorite.months %> </span> </h3>
+        </div>
     </div>
     
     <div class="text-center mb-2 p-5">
