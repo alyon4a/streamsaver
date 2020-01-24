@@ -6,6 +6,22 @@ class Favorite < ApplicationRecord
         ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     end
 
+    def self.full_month(month)
+        full_months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+        full_months.select{|mon| 
+            Favorite.all_months.find_index(month) == full_months.find_index(mon)}[0]
+    end 
+
+    def self.next_month(month)
+        index = Favorite.all_months.find_index(month)
+        if index == 11 
+            new_index = 0 
+        else 
+            new_index = index + 1
+        end 
+        Favorite.all_months[new_index]
+    end 
+
     def self.parse_months(favorites_to_months)
         
         groomed_favorites_to_month = favorites_to_months.keys.reduce({}) do |memo, fav_id_month|

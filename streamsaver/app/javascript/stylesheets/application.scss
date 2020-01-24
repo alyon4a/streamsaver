@@ -82,6 +82,7 @@ img.linked-image:hover {
 .date-picker {
         width: 50%;
         float: right;
+        padding-left: 10px;
 }
 
 .messages {
@@ -109,4 +110,8 @@ img.linked-image:hover {
         float: left;
         width: 33.33%;
         padding-left: 15px;
+}
+
+strong {
+        color: #18A2B8;
 }

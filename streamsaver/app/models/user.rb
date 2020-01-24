@@ -27,19 +27,30 @@ class User < ApplicationRecord
 
     def display_favorites(month, current)
         current_favorites = []
+        next_favorites = []
         future_favorites = []
         self.favorites.each do |favorite|
-            if favorite.months.split(",").include?(month)
+            months = favorite.months.split(",")
+            # next_months = months.map do |month|
+            #     new_index = Favorite.all_months.find_index(month) + 1
+            #     Favorite.all_months[new_index]
+            # end 
+            next_month = Favorite.next_month(month)
+            if months.include?(month)
                 current_favorites << favorite
-            else 
+            elsif months.include?(next_month)
+                next_favorites << favorite
+            else   
                 future_favorites << favorite
-            end  
+            end 
         end 
-        if current
+        if current == "current"
             current_favorites
-        else 
+        elsif current == "next"
+            next_favorites
+        elsif current == "future"
             future_favorites
-        end 
+        end
     end 
 
     def get_reminders(month, day)
@@ -50,11 +61,11 @@ class User < ApplicationRecord
        days_left = Time.days_in_month(month) - day.to_i
        if show_names != [] && day.to_i > 15
             shows = show_names.join(", ")
-            reminder << "#{shows} will expire soon. You have #{days_left} days left to watch!"
+            reminder << "#{shows} will expire soon. You have <strong>#{days_left} days</strong> left to watch!"
        end 
        if provider_names != []
             providers = provider_names.join(", ")
-            reminder << "You don't need #{providers} next month. Remember to deactivate your subscription in #{days_left} days."
+            reminder << "You don't need <strong>#{providers}</strong> next month. Remember to deactivate your subscription in <strong>#{days_left} days</strong>."
        end
        reminder
     end 
