@@ -26,15 +26,11 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
-    # @current_month = session[:month]
-    # @current_day = session[:day]
-    # @current_month_number = session[:month_number]
-
     @current_month = session[:month] ? session[:month] : Favorite.number_to_month(Time.now.month)
     @current_day = session[:day] ? session[:day] : Time.now.day
     @current_month_number = session[:month_number] ? session[:month_number] : Time.now.month
-    @shows_this_month = @user.display_shows(@current_month, true)
-    @upcoming_shows = @user.display_shows(@current_month, false)
+    @favorites_this_month = @user.display_favorites(@current_month, true)
+    @upcoming_favorites = @user.display_favorites(@current_month, false)
     @reminders = @user.get_reminders(@current_month_number, @current_day)
     if @reminders.empty? 
       @reminders <<"Welcome, #{@user.first_name}! You have no messages."

@@ -17,35 +17,35 @@ class User < ApplicationRecord
     end
 
     #Helper method creates a hash of show names pointing to an array of months the user selected
-    def shows_by_month 
-        new_hash = self.favorites.reduce({}) do |shows, favorite|
-            shows[favorite.show] = favorite.months_array
-            shows
+    def favorites_by_month 
+        new_hash = self.favorites.reduce({}) do |favorites_hash, favorite|
+            favorites_hash[favorite] = favorite.months_array
+            favorites_hash
         end
     end
 
 
-    def display_shows(month, current)
-        current_shows = []
-        future_shows = []
-        self.shows_by_month.each do |show, month_array|
-            if month_array.include?(month)
-                current_shows << show
+    def display_favorites(month, current)
+        current_favorites = []
+        future_favorites = []
+        self.favorites.each do |favorite|
+            if favorite.months.split(",").include?(month)
+                current_favorites << favorite
             else 
-                future_shows << show
+                future_favorites << favorite
             end  
         end 
         if current
-            current_shows 
+            current_favorites
         else 
-            future_shows 
+            future_favorites
         end 
     end 
 
     def get_reminders(month, day)
-       expiring_shows = expiring_shows(month, day)
-       show_names = expiring_shows.map {|show| show.name}
-       provider_names = expiring_providers(expiring_shows)
+       expiring_favorites = expiring_favorites(month, day)
+       show_names = expiring_favorites.map {|favorite| favorite.show.name}
+       provider_names = expiring_providers(expiring_favorites)
        reminder = []
        days_left = Time.days_in_month(month) - day.to_i
        if show_names != [] && day.to_i > 15
@@ -60,16 +60,17 @@ class User < ApplicationRecord
     end 
 
     #Helper method to return a hash of of expiring shows (the key is the show and the value is its array of months)
-    def expiring_shows(month, day)
-        show_hash = self.shows_by_month.select do |tv_show, month_array|
+    def expiring_favorites(month, day)
+        favorite_hash = self.favorites_by_month.select do |favorite, month_array|
             Favorite.month_to_number(month_array.last) == month 
         end
-        show_hash.keys
+        favorite_hash.keys
     end 
 
     #Helper method to get expiring providers by crossreferencing the hash of shows organized by providers against the list of shows expiring this month
-    def expiring_providers(expiring_shows)
+    def expiring_providers(expiring_favorites)
         providers = []
+        expiring_shows = expiring_favorites.map {|favorite| favorite.show}
         shows_by_provider.each do |provider, show_array|
             shows_in_common = show_array.select do |show|
                 expiring_shows.include?(show)

@@ -1,44 +1,57 @@
-
-
-<h3>Pick a mock date</h3>
+<div class = "dashboard-container">
+<div class="date-picker">
+<p><strong>Pick a mock date:</strong></p>
 <%= form_tag(set_date_path) do %>
     <%= date_select(:date, :date, default: { day: @current_day.to_i, month: @current_month_number }) %>
     <%= submit_tag %>
 <% end %>
+</div>
 
-<h3>***Messages***</h3>
+<div class="messages">
+<p><strong>Messages:</strong></p>
 <ul>
 <%@reminders.each do |reminder|%>
 <li><%=reminder%></li>
 <%end%>
 </ul>
-
-
-<div style="background-color:black;color:white;font-family:courier;">
-    <h1>Welcome, <%= @user.first_name %></h1>
-    <div>
-        <h3>Current Shows (<%=@current_month%>)</h3>
-        <ul>
-            <%@shows_this_month.each do |show|%>
-                <li style="display:inline;"> 
-                    <%=show.name%>
-                    <img src=<%=show.image_url%> width="300" height="200">
-                    <%=show.provider.name%>
-                </li>
-            <%end%>
-        </ul>
-    </div>
-<div>
-    <h3>Future Shows</h3>
-    <ul>
-        <%@upcoming_shows.each do |show|%>
-            <li style="display:inline;"> 
-                <%=show.name%>
-                <img src=<%=show.image_url%> width="300" height="200">
-                <%=show.provider.name%>
-            </li>
-        <%end%>
-    </ul>
+</div>
 </div>
 
+<div class = "dashboard-content">
+<div style="color:white;">
+    <div>
+        <h3 class="p-1 mb-2 bg-info text-white">Current Shows (<%=@current_month%>)</h3>
+        <div class="tv-block">
+            <%@favorites_this_month.each do |favorite|%>
+                <div class = "column">
+                    <a href=<%=favorite_path(favorite)%>> <img class="linked-image" src=<%=favorite.show.image_url%> width="300" height="200"></a>
+                    <div class="tv-info">
+                        <%=favorite.show.name%>, 
+                        <%=favorite.show.provider.name%>, 
+                        <%favorite.months.split(",").each do |month|%>
+                        <%=month%>
+                        <%end%>
+                    </div>
+                </div>
+            <%end%>
+        </div>
+    </div>
+<div>
+    <h3 class="p-1 mb-2 bg-info text-white">Future Shows</h3>
+         <div class="tv-block">
+            <%@upcoming_favorites.each do |favorite|%>
+                <div class="column">
+                    <a href=<%=favorite_path(favorite)%>><img class="linked-image" src=<%=favorite.show.image_url%> width="300" height="200"></a>
+                    <div class="tv-info">
+                        <%=favorite.show.name%>
+                        <%=favorite.show.provider.name%>
+                        <%favorite.months.split(",").each do |month|%>
+                            <%=month%>
+                        <%end%>
+                    </div>
+                </div>
+            <%end%>
+        </div>
+</div>
+</div>
 </div>
